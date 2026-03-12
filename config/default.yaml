@@ -1,0 +1,15 @@
+# Default configuration for Cognition Framework
+core:
+  agent_name: "Cognition-Alpha"
+  log_level: "info"
+
+llm:
+  provider: "google"
+  model_name: "gemini-3-flash-preview"
+  temperature: 0.7
+  max_tokens: 4096
+
+memory:
+  vector_dim: 1536
+  activation_threshold: 0.5
+  consolidation_interval_secs: 3600
