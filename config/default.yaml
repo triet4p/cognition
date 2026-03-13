@@ -2,6 +2,8 @@
 core:
   agent_name: "Cognition-Alpha"
   log_level: "info"
+  log_type: "both"  # options: console, file, both
+  log_dir: "~/.cognition/logs/"
 
 llm:
   provider: "google"

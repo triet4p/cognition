@@ -4,9 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+cognition-core = { path = "crates/cognition-core" }
+tracing = "0.1.44"
 
 [workspace]
 members = [
-    "crates/cognition-core",
+    "crates/cognition-core", "crates/cognition-graph", "crates/cognition-llm", "crates/cognition-memory", "crates/cognition-py", "crates/cognition-runtime", "crates/cognition-skills", "crates/cognition-storage",
 ]
 resolver = "2"
