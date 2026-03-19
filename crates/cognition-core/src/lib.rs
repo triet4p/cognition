@@ -10,6 +10,6 @@ pub use error::CognitionError;
 pub use result::CognitionResult;
 pub use config::AppConfig;
 pub use logging::init_tracing;
-pub use models::MemoryNode;
+pub use models::{MemoryNode, NetworkType};
 pub use types::*;
 pub use traits::*;

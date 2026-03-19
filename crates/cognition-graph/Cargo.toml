@@ -7,4 +7,4 @@ edition = "2024"
 cognition-core = { version = "0.1.0", path = "../cognition-core" }
 petgraph = "0.8.3"
 serde = { version = "1.0.228", features = ["derive"] }
-tokio = { version = "1.50.0", features = ["sync"] }
+tokio = { version = "1.50.0", features = ["sync", "macros", "rt-multi-thread"] }

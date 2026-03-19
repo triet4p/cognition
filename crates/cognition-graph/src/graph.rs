@@ -12,13 +12,13 @@ use crate::models::EdgeData;
 pub struct CognitiveGraph {
     /// Đồ thị có hướng (Directed Graph) từ petgraph.
     /// Chứa MemoryNode ở các đỉnh và EdgeData ở các cạnh.
-    inner: RwLock<DiGraph<MemoryNode, EdgeData>>,
+    pub(crate) inner: RwLock<DiGraph<MemoryNode, EdgeData>>,
     
     /// Bảng tra cứu nhanh (Lookup Table):
     /// petgraph sử dụng `NodeIndex` (index mảng) để quản lý đỉnh cho nhanh.
     /// Nhưng hệ thống của ta dùng `NodeId` (UUID). 
     /// Ta cần HashMap này để map UUID sang NodeIndex với chi phí O(1).
-    node_indices: RwLock<HashMap<NodeId, NodeIndex>>,
+    pub(crate) node_indices: RwLock<HashMap<NodeId, NodeIndex>>,
 }
 
 impl CognitiveGraph {
