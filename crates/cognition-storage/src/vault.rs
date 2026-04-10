@@ -92,9 +92,12 @@ impl MemVault {
                 "world" => NetworkType::World,
                 "experience" => NetworkType::Experience,
                 "opinion" => NetworkType::Opinion,
-                "pattern" => NetworkType::Pattern,
+                "habit" => NetworkType::Habit,
                 "intention" => NetworkType::Intention,
-                "action" => NetworkType::Action,
+                "actioneffect" => NetworkType::ActionEffect,
+                // Backward-compatibility for older persisted values
+                "pattern" => NetworkType::Habit,
+                "action" => NetworkType::ActionEffect,
                 _ => NetworkType::World,
             };
 
@@ -106,6 +109,7 @@ impl MemVault {
                 embedding: None, // Tạm thời để None, sẽ xử lý blob sau nếu cần
                 confidence: cognition_core::Confidence::new(row.get("confidence")),
                 created_at: row.get("created_at"),
+                intention_status: None,
                 expires_at: row.get("expires_at"),
             });
         }
@@ -201,9 +205,12 @@ impl MemVault {
                     "world" => NetworkType::World,
                     "experience" => NetworkType::Experience,
                     "opinion" => NetworkType::Opinion,
-                    "pattern" => NetworkType::Pattern,
+                    "habit" => NetworkType::Habit,
                     "intention" => NetworkType::Intention,
-                    "action" => NetworkType::Action,
+                    "actioneffect" => NetworkType::ActionEffect,
+                    // Backward-compatibility for older persisted values
+                    "pattern" => NetworkType::Habit,
+                    "action" => NetworkType::ActionEffect,
                     _ => NetworkType::World,
                 };
 
@@ -215,6 +222,7 @@ impl MemVault {
                     embedding: None,
                     confidence: cognition_core::Confidence::new(r.get("confidence")),
                     created_at: r.get("created_at"),
+                    intention_status: None,
                     expires_at: r.get("expires_at"),
                 }))
             },

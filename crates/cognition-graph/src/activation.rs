@@ -1,8 +1,19 @@
 use std::collections::{HashMap, HashSet};
 use petgraph::graph::NodeIndex;
 use petgraph::visit::EdgeRef;
-use cognition_core::{CognitionResult, NodeId};
+use cognition_core::{CognitionResult, EdgeType, NodeId};
 use crate::graph::CognitiveGraph;
+
+fn get_multiplier(edge_type: EdgeType) -> f32 {
+    match edge_type {
+        EdgeType::AoCausal => 2.0,
+        EdgeType::Entity => 1.5,
+        EdgeType::Transition => 1.8,
+        EdgeType::Temporal => 1.0,
+        EdgeType::Semantic => 0.8,
+        _ => 1.0,
+    }
+}
 
 /// Parameters for the Spreading Activation algorithm.
 /// Based on Baddeley's Working Memory Model and Cognitive Cycle-Guards.
@@ -101,7 +112,8 @@ impl CognitiveGraph {
                     let edge_data = edge.weight();
 
                     // Energy = A(u,t) * w(u,v) * mu(edge_type) * delta
-                    let energy = a_u * edge_data.weight * edge_data.multiplier * params.delta;
+                    let mu = get_multiplier(edge_data.edge_type);
+                    let energy = a_u * edge_data.weight * mu * params.delta;
 
                     // Accumulate evidence
                     let current_v = *next_activations.get(&v).unwrap_or(&0.0);

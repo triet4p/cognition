@@ -1,13 +1,5 @@
 use serde::{Deserialize, Serialize};
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
-pub enum EdgeType {
-    Temporal,     // Liên kết thời gian (xảy ra gần nhau)
-    Semantic,     // Liên kết ngữ nghĩa (độ tương đồng vector)
-    Entity,       // Liên kết thực thể (cùng nhắc đến 1 người/vật)
-    Causal,       // Liên kết nhân quả (Precondition -> Action -> Outcome)
-    Hierarchical, // Liên kết phân cấp (Schema: Abstract -> Specific)
-}
+pub use cognition_core::EdgeType;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct EdgeData {
